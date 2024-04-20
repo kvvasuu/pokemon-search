@@ -106,7 +106,7 @@ export default {
   border-radius: 0.3rem;
   width: 25rem;
   height: 22.5rem;
-  margin: 1rem 0 0rem 0;
+  margin: 1rem 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;

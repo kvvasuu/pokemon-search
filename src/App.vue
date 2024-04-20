@@ -34,18 +34,21 @@
     </div>
   </div>
   <pokemon-display v-else-if="pokemonFound" :pokemon="dat"></pokemon-display>
+  <held-items v-if="hasItems" :items="itemsOnHand"></held-items>
   <stats-table v-if="pokemonFound" :stat="dat.stats"></stats-table>
 </template>
 
 <script>
 import StatsTable from "./components/StatsTable.vue";
 import PokemonDisplay from "./components/PokemonDisplay.vue";
+import HeldItems from "./components/HeldItems.vue";
 
 export default {
   name: "App",
   components: {
     StatsTable,
     PokemonDisplay,
+    HeldItems,
   },
   data() {
     return {
@@ -55,6 +58,8 @@ export default {
       pokemonNotFound: false,
       dat: {},
       spriteURL: {},
+      hasItems: false,
+      itemsOnHand: [],
     };
   },
   methods: {
@@ -73,10 +78,23 @@ export default {
         try {
           const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
           this.dat = await res.json();
+          if (this.dat.held_items[0]) {
+            this.hasItems = true;
+            for (let i = 0; i < this.dat.held_items.length; i++) {
+              fetch(`${this.dat.held_items[i].item.url}`)
+                .then((res) => res.json())
+                .then((dat) => {
+                  this.itemsOnHand[i] = dat;
+                });
+            }
+          } else {
+            this.hasItems = false;
+          }
           this.pokemonFound = true;
           this.pokemonNotFound = false;
         } catch (err) {
-          console.log(err);
+          console.error(err);
+          this.hasItems = false;
           this.pokemonNotFound = true;
           this.pokemonFound = false;
         }
