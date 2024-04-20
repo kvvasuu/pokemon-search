@@ -14,6 +14,7 @@
         id="search-input"
         type="text"
         maxlength="20"
+        title="Input name or ID"
         required
       />
       <button @click="search" class="button-1" id="search-button">
