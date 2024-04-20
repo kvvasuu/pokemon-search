@@ -3,7 +3,7 @@
     <div class="item-container-inner">
       <div class="item-caption">ITEMS:</div>
       <div class="items">
-        <div class="item" v-for="item in items" :key="item.name">
+        <div class="item" v-for="item in itemsOnHand" :key="item.name">
           <img
             class="item-img"
             :id="item.name"
@@ -19,6 +19,11 @@
 <script>
 export default {
   props: ["items"],
+  data() {
+    return {
+      itemsOnHand: this.items,
+    };
+  },
 };
 </script>
 

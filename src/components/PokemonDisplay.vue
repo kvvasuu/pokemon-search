@@ -74,6 +74,9 @@ export default {
       }
     },
   },
+  updated() {
+    this.playSound();
+  },
   mounted() {
     this.playSound();
   },

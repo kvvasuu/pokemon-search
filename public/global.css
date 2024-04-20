@@ -6,6 +6,11 @@ html {
   font-size: 16px;
   height: 100%;
   margin: 0;
+  background: url("./background.webp") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
@@ -16,22 +21,20 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: var(--black);
   margin: 0;
-  height: 100%;
 }
 
-.background-image {
+/* .background-image {
   min-width: 100%;
   min-height: 100%;
-  background-image: url("./background.webp");
+  background-image: 
   background-size:  cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-}
+  margin: 0;
+  background-attachment: fixed;
+} */
 
 /* Scrollbar */
 
@@ -53,9 +56,15 @@ body {
   background: #c7a008; 
 }
 
-/* @media (max-device-width: 480px) {
+@media (max-device-width: 428px) {
   html {
-    font-size: 10px;
+    font-size: 14px;
   }
-} */
+}
+
+@media (max-device-width: 358px) {
+  html {
+    font-size: 12px;
+  }
+}
 

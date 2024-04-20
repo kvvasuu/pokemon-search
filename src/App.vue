@@ -80,12 +80,13 @@ export default {
           const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
           this.dat = await res.json();
           if (this.dat.held_items[0]) {
+            this.itemsOnHand.splice(0, this.itemsOnHand.length);
             this.hasItems = true;
             for (let i = 0; i < this.dat.held_items.length; i++) {
               fetch(`${this.dat.held_items[i].item.url}`)
                 .then((res) => res.json())
                 .then((dat) => {
-                  this.itemsOnHand[i] = dat;
+                  this.itemsOnHand.push(dat);
                 });
             }
           } else {
