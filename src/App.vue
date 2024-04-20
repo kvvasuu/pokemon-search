@@ -133,6 +133,7 @@ export default {
 
 .container {
   width: 25rem;
+  min-height: 54rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
