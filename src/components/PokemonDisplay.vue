@@ -140,7 +140,7 @@ export default {
   text-shadow: 0.15rem 0.15rem 0.15rem var(--poke-blue);
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
 }
 
 .size {
