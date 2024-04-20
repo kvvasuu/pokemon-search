@@ -1,24 +1,27 @@
-# pokemon-search-app
+# Simple Pokémon Search App.
 
-## Project setup
-```
-npm install
-```
+## General info
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+It was a certification project from freeCodeCamp.org - **"Build a Pokémon Search App"**...
+But I did much more than was required to pass and then remake it using Vue.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+In the application, we enter the name or ID of the Pokémon. After pressing the "search" button, the application sends a request to the API. If it finds the right Pokemon, it is displayed on the website:
 
-### Lints and fixes files
-```
-npm run lint
-```
+- Name, ID
+- Weight, Height
+- Appearance
+- Types
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You can play sound of Pokémon by clicking on sprite.
+
+A table with statistics is displayed below.
+
+If it doesn't find a Pokémon, it displays the message "Pokémon not found"
+
+## Technologies:
+
+- Vue
+- Font Awesome
+- PokéAPI- https://pokeapi.co/
+
+## Setup
