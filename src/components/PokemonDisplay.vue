@@ -74,6 +74,9 @@ export default {
       }
     },
   },
+  mounted() {
+    this.playSound();
+  },
 };
 </script>
 
