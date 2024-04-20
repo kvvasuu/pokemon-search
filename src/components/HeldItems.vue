@@ -41,7 +41,7 @@ export default {
   margin: 1rem 0 0 0;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
 }
 
