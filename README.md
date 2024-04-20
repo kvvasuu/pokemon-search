@@ -8,15 +8,15 @@ It started as a certification project from freeCodeCamp.org - **"Build a Pokémo
 
 In the application, we enter the name or ID of the Pokémon. After pressing the "search" button, the application sends a request to the API. If it finds the right Pokemon, it is displayed on the website:
 
-- Name, ID - \* _ID must be between 1-1025 or 10001-10277._ \*
+- Name, ID - *ID must be between 1-1025 or 10001-10277.*
 - Weight, Height
 - Appearance
 - Types
-- Items \* _(if available)_ \*
+- Items - *(if available)*
 
 You can play sound of Pokémon by clicking on it.
 
-If Pokémon has any items on hand they will be displayed. \* _(i.e. "Ditto" has 2 items - try it yourself)_ \*
+If Pokémon has any items on hand they will be displayed. *(i.e. "Ditto" has 2 items - try it yourself)*
 
 A table with statistics is displayed below.
 
