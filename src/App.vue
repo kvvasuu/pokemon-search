@@ -114,30 +114,6 @@ export default {
   --background-transparent: rgba(255, 255, 255, 0.2);
 }
 
-[v-cloak] {
-  visibility: hidden;
-}
-
-html {
-  font-size: 16px;
-}
-
-body {
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  background-image: url("./assets/background.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--black);
-  margin: 0;
-}
-
 #logo {
   margin-top: 0;
   width: 25rem;
@@ -161,7 +137,8 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  min-height: 100vh;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .main {
@@ -306,29 +283,13 @@ body {
 }
 
 @media (max-device-width: 768px) {
-  html {
-    font-size: 20px;
-  }
-
   .tooltip {
     display: none;
-  }
-
-  .image-caption-text {
-    display: hide;
   }
 }
 @media (max-device-width: 480px) {
-  html {
-    font-size: 32px;
-  }
-
   .tooltip {
     display: none;
-  }
-
-  .image-caption-text {
-    display: hide;
   }
 }
 </style>
