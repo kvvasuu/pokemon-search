@@ -53,11 +53,13 @@
   ></pokemon-display>
   <held-items v-if="hasItems" :items="itemsOnHand"></held-items>
   <stats-table v-if="pokemonFound" :stat="dat.stats"></stats-table>
-  <help-modal
-    v-if="helpModalShow"
-    @toggle-modal="helpModalHandle"
-    :mute="mute"
-  ></help-modal>
+  <transition name="fade" appear>
+    <help-modal
+      v-if="helpModalShow"
+      @toggle-modal="helpModalHandle"
+      :mute="mute"
+    ></help-modal>
+  </transition>
 </template>
 
 <script>
@@ -163,7 +165,8 @@ export default {
 
 .header {
   color: var(--poke-yellow);
-  -webkit-text-stroke: 0.12rem var(--poke-blue);
+  -webkit-text-stroke: 0.12rem rgba(42, 117, 187, 1);
+  text-shadow: -0.15rem 0.15rem 0.07rem var(--poke-blue-dark);
   font-family: "Helvetica Neue", sans-serif;
   font-size: 2rem;
   font-weight: bold;
@@ -178,6 +181,7 @@ export default {
   min-height: 54rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin: auto;
   margin-top: 1rem;
@@ -195,7 +199,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
 }
 
 .main-header {
@@ -207,10 +211,10 @@ export default {
 }
 
 .mute-button {
+  position: relative;
+  top: 0.4rem;
+  left: 1.6rem;
   font-size: 1rem;
-  margin: 1rem 0 0 3.2rem;
-  text-align: center;
-  text-justify: center;
   color: var(--poke-yellow);
   -webkit-filter: drop-shadow(0.07rem 0.15rem 0.15rem #222);
   filter: drop-shadow(0.07rem 0.15rem 0.15rem #222);
@@ -309,5 +313,17 @@ export default {
   50% {
     transform: rotate(25deg);
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+  animation: blur-in 0.5s ease-in-out forwards;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  animation: blur-out 0.5s ease-in-out forwards;
 }
 </style>

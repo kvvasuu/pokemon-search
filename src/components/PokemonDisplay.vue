@@ -117,7 +117,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
 }
 
 .pokemon-container-inner {
@@ -168,6 +168,7 @@ export default {
   text-align: center;
   font-size: 0.6rem;
   z-index: 1;
+  -webkit-text-stroke: 0.03rem rgba(0, 0, 0, 0.3);
 }
 
 #types {
@@ -179,6 +180,7 @@ export default {
 }
 
 .type {
+  letter-spacing: 1px;
   height: 3.125rem;
   width: 5rem;
   padding: 0.7rem;
@@ -188,6 +190,7 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   text-shadow: 0.07rem 0.07rem 0.23rem #222;
+  -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.3);
 }
 
 .type i {

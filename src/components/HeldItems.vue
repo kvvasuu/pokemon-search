@@ -19,11 +19,13 @@
       </div>
     </div>
   </div>
-  <item-modal
-    v-if="itemModalShow"
-    @toggle-modal="itemModalHandle"
-    :item="currentItem"
-  ></item-modal>
+  <transition name="fade">
+    <item-modal
+      v-if="itemModalShow"
+      @toggle-modal="itemModalHandle"
+      :item="currentItem"
+    ></item-modal>
+  </transition>
 </template>
 
 <script>
@@ -43,7 +45,7 @@ export default {
     },
     itemTransfer(item) {
       this.currentItem = this.items[item];
-      console.dir(this.currentItem);
+      console.log(this.currentItem);
     },
   },
 };
@@ -70,7 +72,7 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
 }
 
 .item-container-inner {
