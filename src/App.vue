@@ -4,7 +4,20 @@
     <p class="header">SEARCH APP</p>
   </div>
   <div class="main" id="main">
-    <p class="input-caption">Search for Pokémon Name or ID:</p>
+    <div class="main-header">
+      <p class="input-caption">Search for Pokémon Name or ID:</p>
+      <i
+        v-if="mute"
+        @click="toggleMute"
+        class="fa-solid fa-volume-xmark mute-button"
+      ></i>
+      <i
+        v-else
+        @click="toggleMute"
+        class="fa-solid fa-volume-high mute-button"
+      ></i>
+    </div>
+
     <div class="inputs">
       <input
         @keyup.enter="search"
@@ -20,9 +33,7 @@
       <button @click="search" class="button-1" id="search-button">
         Search
       </button>
-      <span
-        class="tooltip"
-        data-text="ID must be between 1-1025 or 10001-10277. Click on sprite to play sound"
+      <span @click="helpModalHandle" class="help-button"
         ><i class="fa-solid fa-circle-info"></i
       ></span>
     </div>
@@ -34,15 +45,26 @@
       </div>
     </div>
   </div>
-  <pokemon-display v-else-if="pokemonFound" :pokemon="dat"></pokemon-display>
+  <pokemon-display
+    v-else-if="pokemonFound"
+    :pokemon="dat"
+    :isShiny="isShiny"
+    @toggle-shiny="playSound(), toggleShiny()"
+  ></pokemon-display>
   <held-items v-if="hasItems" :items="itemsOnHand"></held-items>
   <stats-table v-if="pokemonFound" :stat="dat.stats"></stats-table>
+  <help-modal
+    v-if="helpModalShow"
+    @toggle-modal="helpModalHandle"
+    :mute="mute"
+  ></help-modal>
 </template>
 
 <script>
 import StatsTable from "./components/StatsTable.vue";
 import PokemonDisplay from "./components/PokemonDisplay.vue";
 import HeldItems from "./components/HeldItems.vue";
+import HelpModal from "./components/HelpModal.vue";
 
 export default {
   name: "App",
@@ -50,10 +72,15 @@ export default {
     StatsTable,
     PokemonDisplay,
     HeldItems,
+    HelpModal,
   },
   data() {
     return {
+      helpModalShow: false,
+      mute: false,
+      isShiny: false,
       searchInput: "",
+      currentPokemon: "",
       stats: [],
       pokemonFound: false,
       pokemonNotFound: false,
@@ -64,9 +91,19 @@ export default {
     };
   },
   methods: {
+    helpModalHandle() {
+      this.helpModalShow = !this.helpModalShow;
+    },
+    toggleMute() {
+      this.mute = !this.mute;
+    },
+    toggleShiny() {
+      this.isShiny = !this.isShiny;
+    },
     playSound() {
-      if (this.dat.cries.latest) {
+      if (this.dat.cries.latest && !this.mute) {
         const audio = new Audio(this.dat.cries.latest);
+        audio.volume = 0.1;
         audio.play();
       }
     },
@@ -75,7 +112,7 @@ export default {
       if (!input) {
         this.pokemonNotFound = true;
         this.pokemonFound = false;
-      } else {
+      } else if (this.currentPokemon !== this.searchInput) {
         try {
           const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
           this.dat = await res.json();
@@ -92,8 +129,11 @@ export default {
           } else {
             this.hasItems = false;
           }
+          this.isShiny = false;
           this.pokemonFound = true;
           this.pokemonNotFound = false;
+          this.playSound();
+          this.currentPokemon = this.searchInput;
         } catch (err) {
           console.error(err);
           this.hasItems = false;
@@ -155,6 +195,26 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+.main-header {
+  width: 25rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mute-button {
+  font-size: 1rem;
+  margin: 1rem 0 0 3.2rem;
+  text-align: center;
+  text-justify: center;
+  color: var(--poke-yellow);
+  -webkit-filter: drop-shadow(0.07rem 0.15rem 0.15rem #222);
+  filter: drop-shadow(0.07rem 0.15rem 0.15rem #222);
+  cursor: pointer;
 }
 
 .input-caption {
@@ -230,11 +290,12 @@ export default {
   transform: translate(0em, 0.15rem);
 }
 
-.tooltip {
+.help-button {
   position: relative;
+  cursor: help;
 }
 
-.tooltip i {
+.help-button i {
   margin-left: 1rem;
   color: var(--poke-yellow);
   animation-name: tilt;
@@ -247,52 +308,6 @@ export default {
 @keyframes tilt {
   50% {
     transform: rotate(25deg);
-  }
-}
-
-.tooltip:before {
-  content: attr(data-text);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100%;
-  margin-left: 0.94rem;
-  width: 12.5rem;
-  padding: 0.625;
-  border-radius: 0.625;
-  background: var(--poke-yellow);
-  border: 0.23rem solid var(--poke-blue);
-  color: var(--poke-blue);
-  text-align: center;
-  opacity: 0;
-  transition: 0.5s opacity;
-}
-
-.tooltip:after {
-  content: "";
-  position: absolute;
-  left: 100%;
-  margin-left: -0.315rem;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 0.625 solid var(--poke-blue);
-  border-color: transparent var(--poke-blue) transparent transparent;
-  opacity: 0;
-  transition: 0.5s opacity;
-}
-.tooltip:hover:before,
-.tooltip:hover:after {
-  opacity: 1;
-}
-
-@media (max-device-width: 768px) {
-  .tooltip {
-    display: none;
-  }
-}
-@media (max-device-width: 480px) {
-  .tooltip {
-    display: none;
   }
 }
 </style>

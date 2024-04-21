@@ -6,7 +6,7 @@ html {
   font-size: 16px;
   height: 100%;
   margin: 0;
-  background: url("./background.webp") no-repeat center center fixed; 
+  background: url("./background.webp") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -40,20 +40,19 @@ body {
 
 ::-webkit-scrollbar {
   width: 0.6rem;
-  
 }
 
 ::-webkit-scrollbar-track {
   background-color: #3c5aa6;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #ffcb05; 
+  background: #ffcb05;
   border-radius: 0.2rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c7a008; 
+  background: #c7a008;
 }
 
 @media (max-device-width: 428px) {
@@ -67,4 +66,3 @@ body {
     font-size: 12px;
   }
 }
-

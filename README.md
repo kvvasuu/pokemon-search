@@ -6,27 +6,33 @@ It started as a certification project from freeCodeCamp.org - **"Build a Pokémo
 ...But I did much more than was required to pass and then remake it using Vue...
 ...Then added more and more :D
 
-In the application, we enter the name or ID of the Pokémon. After pressing the "search" button, the application sends a request to the API. If it finds the right Pokemon, it is displayed on the website:
+In the application, we enter the Pokémon's name or ID. After pressing the "search" button, the application sends a request to the API. if a suitable Pokemon is found, it will be displayed on the website:
 
-- Name, ID - *ID must be between 1-1025 or 10001-10277.*
+- Name, ID - _The ID must be in the range 1-1025 or 10001-10277_
 - Weight, Height
 - Appearance
 - Types
-- Items - *(if available)*
+- Items - _(if available)_
 
-You can play sound of Pokémon by clicking on it.
+By pressing on a Pokémon you can change its appearance to "Shiny"
+and play its sound. You can mute sounds by pressing the speaker icon
+in the upper right corner, above the "info" icon.
 
-If Pokémon has any items on hand they will be displayed. *(i.e. "Ditto" has 2 items - try it yourself)*
+If the Pokémon has any items, they will be displayed. By clicking on
+an item you can check its details. _(i.e. "Ditto" has 2 items - try it yourself)_
 
 A table with statistics is displayed below.
 
 If it doesn't find a Pokémon, it displays the message "Pokémon not found"
 
+The information is mostly based on video game franchise.
+Data is obtained from PokeAPI - https://pokeapi.co/
+
 ## Technologies:
 
 - Vue
 - Font Awesome
-- PokéAPI- https://pokeapi.co/
+- PokéAPI
 
 ## Setup
 

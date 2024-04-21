@@ -3,7 +3,12 @@
     <div class="item-container-inner">
       <div class="item-caption">ITEMS:</div>
       <div class="items">
-        <div class="item" v-for="item in itemsOnHand" :key="item.name">
+        <div
+          class="item"
+          v-for="(item, index) in items"
+          :key="item.name"
+          @click="itemTransfer(index), itemModalHandle()"
+        >
           <img
             class="item-img"
             :id="item.name"
@@ -14,15 +19,32 @@
       </div>
     </div>
   </div>
+  <item-modal
+    v-if="itemModalShow"
+    @toggle-modal="itemModalHandle"
+    :item="currentItem"
+  ></item-modal>
 </template>
 
 <script>
+import ItemModal from "./ItemModal.vue";
+
 export default {
+  components: {
+    ItemModal,
+  },
   props: ["items"],
   data() {
-    return {
-      itemsOnHand: this.items,
-    };
+    return { itemModalShow: false, currentItem: "" };
+  },
+  methods: {
+    itemModalHandle() {
+      this.itemModalShow = !this.itemModalShow;
+    },
+    itemTransfer(item) {
+      this.currentItem = this.items[item];
+      console.dir(this.currentItem);
+    },
   },
 };
 </script>
@@ -48,6 +70,7 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
 }
 
 .item-container-inner {
@@ -73,6 +96,7 @@ export default {
   align-items: center;
   justify-content: left;
   margin: 0 0.2rem 0 0.2rem;
+  cursor: pointer;
 }
 
 .item-img {

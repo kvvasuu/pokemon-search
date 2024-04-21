@@ -14,15 +14,15 @@
     <title>Pokémon Search</title>
   </head>
   <body>
-    <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
     <div class="background-image">
-      <div v-cloak class="container" id="app"></div>
+      <noscript>
+        <strong
+          >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+          properly without JavaScript enabled. Please enable it to
+          continue.</strong
+        >
+      </noscript>
+      <div class="container" id="app"></div>
     </div>
   </body>
 </html>

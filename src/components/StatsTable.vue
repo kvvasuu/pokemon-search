@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 table {
   margin: 1rem 0;
   border-radius: 0.3rem;
@@ -48,14 +48,15 @@ table {
   overflow: hidden;
   box-shadow: 0 0 0.625 rgba(0, 0, 0, 0.3);
   text-align: center;
-  text-shadow: 0.15rem 0.15rem 0.15rem #000;
+  text-shadow: 0.1rem 0.1rem 0.05rem var(--poke-blue);
+  backdrop-filter: blur(4px);
+  background-color: var(--background-transparent);
 }
 
 th,
 td {
   color: var(--poke-yellow);
   padding: 0.3rem;
-  background-color: var(--background-transparent);
   text-align: center;
 }
 

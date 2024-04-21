@@ -10,16 +10,15 @@
         <span id="weight">Weight: {{ pokemon.weight }}</span>
         <span id="height"> Height: {{ pokemon.height }}</span>
       </div>
-      <div
-        @click="playSound"
-        @touchstart="playSound"
-        id="sprite-container"
-        class="sprite-container"
-      >
+      <div id="sprite-container" class="sprite-container">
         <div class="image-caption">
           <span class="image-caption-text">Click me!</span>
         </div>
-        <img id="sprite" :src="pokemon.sprites.front_default" />
+        <pokemon-sprite
+          @toggle-shiny="() => this.$emit('toggle-shiny')"
+          :sprite="pokemon.sprites"
+          :isShiny="isShiny"
+        ></pokemon-sprite>
       </div>
       <div id="types">
         <div
@@ -37,8 +36,13 @@
 </template>
 
 <script>
+import PokemonSprite from "./PokemonSprite.vue";
+
 export default {
-  props: ["pokemon"],
+  props: ["pokemon", "isShiny"],
+  components: {
+    PokemonSprite,
+  },
   data() {
     return {
       typeIcons: {
@@ -70,15 +74,10 @@ export default {
     playSound() {
       if (this.pokemon.cries.latest) {
         const audio = new Audio(this.pokemon.cries.latest);
+        audio.volume = 0.1;
         audio.play();
       }
     },
-  },
-  updated() {
-    this.playSound();
-  },
-  mounted() {
-    this.playSound();
   },
 };
 </script>
@@ -118,6 +117,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
 }
 
 .pokemon-container-inner {
@@ -168,17 +168,6 @@ export default {
   text-align: center;
   font-size: 0.6rem;
   z-index: 1;
-}
-
-#sprite {
-  width: 100%;
-  -webkit-filter: drop-shadow(0.625rem 0.625rem 0.625rem #222);
-  transition: rotate 1s;
-  filter: drop-shadow(0.625rem 0.625rem 0.625rem #222);
-}
-
-#sprite:active {
-  transform: rotate(3deg);
 }
 
 #types {
