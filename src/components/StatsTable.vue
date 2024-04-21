@@ -65,7 +65,7 @@ table {
   box-shadow: 0 0 0.625 rgba(0, 0, 0, 0.3);
   text-align: center;
   text-shadow: 0.1rem 0.1rem 0.05rem var(--poke-blue);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 th,
