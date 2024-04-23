@@ -82,7 +82,7 @@ export default {
       mute: false,
       isShiny: false,
       searchInput: "",
-      currentPokemon: "",
+      currentSearch: "",
       stats: [],
       pokemonFound: false,
       pokemonNotFound: false,
@@ -114,7 +114,7 @@ export default {
       if (!input) {
         this.pokemonNotFound = true;
         this.pokemonFound = false;
-      } else if (this.currentPokemon !== this.searchInput) {
+      } else if (this.currentSearch !== this.searchInput) {
         try {
           const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
           this.dat = await res.json();
@@ -135,7 +135,7 @@ export default {
           this.pokemonFound = true;
           this.pokemonNotFound = false;
           this.playSound();
-          this.currentPokemon = this.searchInput;
+          this.currentSearch = this.searchInput;
         } catch (err) {
           console.error(err);
           this.hasItems = false;
