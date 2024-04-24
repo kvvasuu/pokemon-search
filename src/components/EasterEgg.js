@@ -1,5 +1,5 @@
 export const kwasu = {
-  validInputs: ["kwasu", "kvvasu", "0"],
+  validInputs: ["kwasu", "kvvasu", "0", "łukasz", "kwas"],
   height: 184,
   weight: 93,
   held_items: [
@@ -31,6 +31,8 @@ export const kwasu = {
   sprites: {
     front_default:
       "https://raw.githubusercontent.com/kvvasuu/pokemon-search/master/src/assets/kvvasu.png",
+    front_shiny:
+      "https://raw.githubusercontent.com/kvvasuu/pokemon-search/master/src/assets/kvvasu_shiny.png",
   },
   stats: [
     {
