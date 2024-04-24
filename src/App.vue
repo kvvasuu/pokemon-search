@@ -63,6 +63,93 @@
 </template>
 
 <script>
+const kwasu = {
+  height: 184,
+  weight: 93,
+  held_items: [
+    {
+      item: {
+        name: "metal-powder",
+        url: "https://pokeapi.co/api/v2/item/234/",
+      },
+    },
+    {
+      item: {
+        name: "quick-powder",
+        url: "https://pokeapi.co/api/v2/item/251/",
+      },
+    },
+  ],
+  cries: {
+    latest:
+      "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/45.ogg",
+  },
+  id: 0,
+  name: "Kvvasu",
+  sprites: {
+    front_default: "./pokemon-search-app/src/assets/kvvasu.png",
+  },
+  stats: [
+    {
+      base_stat: 99,
+      effort: 1,
+      stat: {
+        name: "hp",
+        url: "https://pokeapi.co/api/v2/stat/1/",
+      },
+    },
+    {
+      base_stat: 99,
+      effort: 0,
+      stat: {
+        name: "attack",
+        url: "https://pokeapi.co/api/v2/stat/2/",
+      },
+    },
+    {
+      base_stat: 99,
+      effort: 0,
+      stat: {
+        name: "defense",
+        url: "https://pokeapi.co/api/v2/stat/3/",
+      },
+    },
+    {
+      base_stat: 99,
+      effort: 0,
+      stat: {
+        name: "special-attack",
+        url: "https://pokeapi.co/api/v2/stat/4/",
+      },
+    },
+    {
+      base_stat: 99,
+      effort: 0,
+      stat: {
+        name: "special-defense",
+        url: "https://pokeapi.co/api/v2/stat/5/",
+      },
+    },
+    {
+      base_stat: 99,
+      effort: 0,
+      stat: {
+        name: "speed",
+        url: "https://pokeapi.co/api/v2/stat/6/",
+      },
+    },
+  ],
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: "normal",
+        url: "https://pokeapi.co/api/v2/type/1/",
+      },
+    },
+  ],
+};
+
 import StatsTable from "./components/StatsTable.vue";
 import PokemonDisplay from "./components/PokemonDisplay.vue";
 import HeldItems from "./components/HeldItems.vue";
@@ -116,20 +203,26 @@ export default {
         this.pokemonFound = false;
       } else if (this.currentSearch !== this.searchInput) {
         try {
-          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
-          this.dat = await res.json();
-          if (this.dat.held_items[0]) {
-            this.itemsOnHand.splice(0, this.itemsOnHand.length);
-            this.hasItems = true;
-            for (let i = 0; i < this.dat.held_items.length; i++) {
-              fetch(`${this.dat.held_items[i].item.url}`)
-                .then((res) => res.json())
-                .then((dat) => {
-                  this.itemsOnHand.push(dat);
-                });
-            }
+          if (input === "kvvasu" || input === "kwasu" || input === 0) {
+            this.dat = kwasu;
           } else {
-            this.hasItems = false;
+            const res = await fetch(
+              `https://pokeapi.co/api/v2/pokemon/${input}`
+            );
+            this.dat = await res.json();
+            if (this.dat.held_items[0]) {
+              this.itemsOnHand.splice(0, this.itemsOnHand.length);
+              this.hasItems = true;
+              for (let i = 0; i < this.dat.held_items.length; i++) {
+                fetch(`${this.dat.held_items[i].item.url}`)
+                  .then((res) => res.json())
+                  .then((dat) => {
+                    this.itemsOnHand.push(dat);
+                  });
+              }
+            } else {
+              this.hasItems = false;
+            }
           }
           this.isShiny = false;
           this.pokemonFound = true;

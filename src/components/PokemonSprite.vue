@@ -7,7 +7,11 @@ export default {
   props: ["sprite", "isShiny"],
   computed: {
     shiny() {
-      return this.isShiny ? this.sprite.front_shiny : this.sprite.front_default;
+      if (this.sprite.front_shiny) {
+        return this.isShiny
+          ? this.sprite.front_shiny
+          : this.sprite.front_default;
+      } else return this.sprite.front_default;
     },
   },
   methods: {
