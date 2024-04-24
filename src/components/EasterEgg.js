@@ -1,17 +1,24 @@
 export const kwasu = {
+  validInputs: ["kwasu", "kvvasu", "0"],
   height: 184,
   weight: 93,
   held_items: [
     {
       item: {
-        name: "metal-powder",
-        url: "https://pokeapi.co/api/v2/item/234/",
+        name: "ultra-ball",
+        url: "https://pokeapi.co/api/v2/item/2/",
       },
     },
     {
       item: {
         name: "quick-powder",
         url: "https://pokeapi.co/api/v2/item/251/",
+      },
+    },
+    {
+      item: {
+        name: "air-balloon",
+        url: "https://pokeapi.co/api/v2/item/584/",
       },
     },
   ],
@@ -79,8 +86,15 @@ export const kwasu = {
     {
       slot: 1,
       type: {
-        name: "normal",
-        url: "https://pokeapi.co/api/v2/type/1/",
+        name: "fighting",
+        url: "https://pokeapi.co/api/v2/type/2/",
+      },
+    },
+    {
+      slot: 2,
+      type: {
+        name: "psychic",
+        url: "https://pokeapi.co/api/v2/type/4/",
       },
     },
   ],
