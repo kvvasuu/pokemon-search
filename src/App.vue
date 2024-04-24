@@ -85,9 +85,10 @@ const kwasu = {
       "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/45.ogg",
   },
   id: 0,
-  name: "Kvvasu",
+  name: "Kwasu",
   sprites: {
-    front_default: "./pokemon-search-app/src/assets/kvvasu.png",
+    front_default:
+      "https://raw.githubusercontent.com/kvvasuu/pokemon-search/master/src/assets/kvvasu.png",
   },
   stats: [
     {
@@ -203,7 +204,7 @@ export default {
         this.pokemonFound = false;
       } else if (this.currentSearch !== this.searchInput) {
         try {
-          if (input === "kvvasu" || input === "kwasu" || input === 0) {
+          if (input === "kvvasu" || input === "kwasu" || input === "0") {
             this.dat = kwasu;
           } else {
             const res = await fetch(
