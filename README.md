@@ -1,6 +1,5 @@
 # Pokémon Search App.
 ![App demo](https://raw.githubusercontent.com/kvvasuu/pokemon-search/master/demo.png "App demo")
-https://kvvasu-pokesearch.netlify.app/
 
 ## General info
 
