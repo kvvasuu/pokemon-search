@@ -1,4 +1,4 @@
-# Pokémon Search App.
+# Pokémon Search App
 ![App demo](https://raw.githubusercontent.com/kvvasuu/pokemon-search/master/demo.png "App demo")
 
 ## General info
