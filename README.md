@@ -43,7 +43,7 @@ Data is obtained from PokeAPI - https://pokeapi.co/
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:5173
 npm run serve
 
 # build for production with minification
